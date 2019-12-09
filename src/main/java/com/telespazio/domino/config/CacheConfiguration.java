@@ -44,6 +44,23 @@ public class CacheConfiguration {
             createCache(cm, com.telespazio.domino.domain.User.class.getName() + ".authorities");
             createCache(cm, com.telespazio.domino.domain.PersistentToken.class.getName());
             createCache(cm, com.telespazio.domino.domain.User.class.getName() + ".persistentTokens");
+            createCache(cm, com.telespazio.domino.domain.Categoria.class.getName());
+            createCache(cm, com.telespazio.domino.domain.Categoria.class.getName() + ".protocolos");
+            createCache(cm, com.telespazio.domino.domain.Documento.class.getName());
+            createCache(cm, com.telespazio.domino.domain.Documento.class.getName() + ".protocolos");
+            createCache(cm, com.telespazio.domino.domain.GrupoSolicitante.class.getName());
+            createCache(cm, com.telespazio.domino.domain.Numeracao.class.getName());
+            createCache(cm, com.telespazio.domino.domain.Numeracao.class.getName() + ".protocolos");
+            createCache(cm, com.telespazio.domino.domain.Setor.class.getName());
+            createCache(cm, com.telespazio.domino.domain.Setor.class.getName() + ".protocolos");
+            createCache(cm, com.telespazio.domino.domain.TipoProtocolo.class.getName());
+            createCache(cm, com.telespazio.domino.domain.TipoProtocolo.class.getName() + ".protocolos");
+            createCache(cm, com.telespazio.domino.domain.TipoUsuario.class.getName());
+            createCache(cm, com.telespazio.domino.domain.TipoUsuario.class.getName() + ".usuarios");
+            createCache(cm, com.telespazio.domino.domain.Usuario.class.getName());
+            createCache(cm, com.telespazio.domino.domain.Versao.class.getName());
+            createCache(cm, com.telespazio.domino.domain.Versao.class.getName() + ".protocolos");
+            createCache(cm, com.telespazio.domino.domain.Protocolo.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

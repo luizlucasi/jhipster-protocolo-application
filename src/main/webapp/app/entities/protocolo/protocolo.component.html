@@ -1,0 +1,109 @@
+<div>
+    <h2 id="page-heading">
+        <span>Protocolos</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-protocolo" [routerLink]="['/protocolo/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Protocolo
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="protocolos?.length === 0">
+        <span>No protocolos found</span>
+    </div>
+    <div class="table-responsive" *ngIf="protocolos?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="solicitante"><span>Solicitante</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="dataSolicitacao"><span>Data Solicitacao</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="dataEnvio"><span>Data Envio</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="enviadoPor"><span>Enviado Por</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="dataCriacao"><span>Data Criacao</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="usuarioCriacao"><span>Usuario Criacao</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="localizacao"><span>Localizacao</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="observacao"><span>Observacao</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="nomenclatura"><span>Nomenclatura</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="formato"><span>Formato</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="versao.id"><span>Versao</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="documento.id"><span>Documento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="tipoProtocolo.id"><span>Tipo Protocolo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="setor.id"><span>Setor</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="categoria.id"><span>Categoria</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="numeracao.id"><span>Numeracao</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let protocolo of protocolos ;trackBy: trackId">
+                <td><a [routerLink]="['/protocolo', protocolo.id, 'view' ]">{{protocolo.id}}</a></td>
+                <td>{{protocolo.solicitante}}</td>
+                <td>{{protocolo.dataSolicitacao | date:'medium'}}</td>
+                <td>{{protocolo.dataEnvio | date:'medium'}}</td>
+                <td>{{protocolo.enviadoPor}}</td>
+                <td>{{protocolo.dataCriacao | date:'medium'}}</td>
+                <td>{{protocolo.usuarioCriacao | date:'medium'}}</td>
+                <td>{{protocolo.localizacao}}</td>
+                <td>{{protocolo.observacao}}</td>
+                <td>{{protocolo.nomenclatura}}</td>
+                <td>{{protocolo.formato}}</td>
+                <td>
+                    <div *ngIf="protocolo.versao">
+                        <a [routerLink]="['/versao', protocolo.versao?.id, 'view' ]" >{{protocolo.versao?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="protocolo.documento">
+                        <a [routerLink]="['/documento', protocolo.documento?.id, 'view' ]" >{{protocolo.documento?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="protocolo.tipoProtocolo">
+                        <a [routerLink]="['/tipo-protocolo', protocolo.tipoProtocolo?.id, 'view' ]" >{{protocolo.tipoProtocolo?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="protocolo.setor">
+                        <a [routerLink]="['/setor', protocolo.setor?.id, 'view' ]" >{{protocolo.setor?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="protocolo.categoria">
+                        <a [routerLink]="['/categoria', protocolo.categoria?.id, 'view' ]" >{{protocolo.categoria?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="protocolo.numeracao">
+                        <a [routerLink]="['/numeracao', protocolo.numeracao?.id, 'view' ]" >{{protocolo.numeracao?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/protocolo', protocolo.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/protocolo', protocolo.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(protocolo)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
