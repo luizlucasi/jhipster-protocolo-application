@@ -1,0 +1,59 @@
+<div>
+    <h2 id="page-heading">
+        <span>Tipo Protocolos</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-tipo-protocolo" [routerLink]="['/tipo-protocolo/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Tipo Protocolo
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="tipoProtocolos?.length === 0">
+        <span>No tipoProtocolos found</span>
+    </div>
+    <div class="table-responsive" *ngIf="tipoProtocolos?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th scope="col" ><span>ID</span></th>
+            <th scope="col" ><span>Nome Protocolo</span></th>
+            <th scope="col" ><span>Cod Protocolo</span></th>
+            <th scope="col" ><span>Is Active</span></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let tipoProtocolo of tipoProtocolos ;trackBy: trackId">
+                <td><a [routerLink]="['/tipo-protocolo', tipoProtocolo.id, 'view' ]">{{tipoProtocolo.id}}</a></td>
+                <td>{{tipoProtocolo.nomeProtocolo}}</td>
+                <td>{{tipoProtocolo.codProtocolo}}</td>
+                <td>{{tipoProtocolo.isActive}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/tipo-protocolo', tipoProtocolo.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/tipo-protocolo', tipoProtocolo.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(tipoProtocolo)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

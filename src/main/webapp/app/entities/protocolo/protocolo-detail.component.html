@@ -1,0 +1,99 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="protocolo">
+            <h2><span>Protocolo</span> {{protocolo.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Solicitante</span></dt>
+                <dd>
+                    <span>{{protocolo.solicitante}}</span>
+                </dd>
+                <dt><span>Data Solicitacao</span></dt>
+                <dd>
+                    <span>{{protocolo.dataSolicitacao}}</span>
+                </dd>
+                <dt><span>Data Envio</span></dt>
+                <dd>
+                    <span>{{protocolo.dataEnvio}}</span>
+                </dd>
+                <dt><span>Enviado Por</span></dt>
+                <dd>
+                    <span>{{protocolo.enviadoPor}}</span>
+                </dd>
+                <dt><span>Data Criacao</span></dt>
+                <dd>
+                    <span>{{protocolo.dataCriacao}}</span>
+                </dd>
+                <dt><span>Usuario Criacao</span></dt>
+                <dd>
+                    <span>{{protocolo.usuarioCriacao}}</span>
+                </dd>
+                <dt><span>Localizacao</span></dt>
+                <dd>
+                    <span>{{protocolo.localizacao}}</span>
+                </dd>
+                <dt><span>Observacao</span></dt>
+                <dd>
+                    <span>{{protocolo.observacao}}</span>
+                </dd>
+                <dt><span>Nomenclatura</span></dt>
+                <dd>
+                    <span>{{protocolo.nomenclatura}}</span>
+                </dd>
+                <dt><span>Formato</span></dt>
+                <dd>
+                    <span>{{protocolo.formato}}</span>
+                </dd>
+                <dt><span>Versao</span></dt>
+                <dd>
+                    <div *ngIf="protocolo.versao">
+                        <a [routerLink]="['/versao', protocolo.versao?.id, 'view']">{{protocolo.versao?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Documento</span></dt>
+                <dd>
+                    <div *ngIf="protocolo.documento">
+                        <a [routerLink]="['/documento', protocolo.documento?.id, 'view']">{{protocolo.documento?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Tipo Protocolo</span></dt>
+                <dd>
+                    <div *ngIf="protocolo.tipoProtocolo">
+                        <a [routerLink]="['/tipo-protocolo', protocolo.tipoProtocolo?.id, 'view']">{{protocolo.tipoProtocolo?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Setor</span></dt>
+                <dd>
+                    <div *ngIf="protocolo.setor">
+                        <a [routerLink]="['/setor', protocolo.setor?.id, 'view']">{{protocolo.setor?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Categoria</span></dt>
+                <dd>
+                    <div *ngIf="protocolo.categoria">
+                        <a [routerLink]="['/categoria', protocolo.categoria?.id, 'view']">{{protocolo.categoria?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Numeracao</span></dt>
+                <dd>
+                    <div *ngIf="protocolo.numeracao">
+                        <a [routerLink]="['/numeracao', protocolo.numeracao?.id, 'view']">{{protocolo.numeracao?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/protocolo', protocolo.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
